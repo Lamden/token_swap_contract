@@ -52,25 +52,25 @@ class MyTestCase(unittest.TestCase):
         print("TEST DISPERSE - ASSERT HASH ALREADY SEEN")
 
         self.con_token_swap.disperse(
-            amount=1.1,
+            amount=0.00000007,
             to="stu",
             hash="0x2"
         )
 
         self.assertEqual(self.con_token_swap.quick_read('seen_hashes', "0x2"), True)
-        self.assertEqual(self.currency_contract.quick_read('balances', 'stu'), 1.1)
+        self.assertEqual(self.currency_contract.quick_read('balances', 'stu'), 0.00000014)
 
         self.assertRaises(
             AssertionError,
             lambda: self.con_token_swap.disperse(
-                amount=1.1,
+                amount=0.00000007,
                 to="stu",
                 hash="0x2"
             )
         )
 
         self.assertTrue(self.con_token_swap.quick_read('seen_hashes', "0x2"))
-        self.assertEqual(self.currency_contract.quick_read('balances', 'stu'), 1.1)
+        self.assertEqual(self.currency_contract.quick_read('balances', 'stu'), 0.00000014)
 
     def test_2c_disperse_assert_operator(self):
         self.change_signer('stu')

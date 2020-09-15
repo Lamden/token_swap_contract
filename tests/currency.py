@@ -2,7 +2,7 @@ balances = Hash(default_value=0)
 
 @construct
 def seed():
-    balances['con_token_swap'] = 1000
+    balances['con_token_swap'] = 99999999999999999999999999999.999999999999999999999999999999
 
 @export
 def transfer(amount: float, to: str):
